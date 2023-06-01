@@ -1,0 +1,73 @@
+body {
+  background-color: #ffffff;
+  background-image: linear-gradient(
+      rgba(93, 93, 93, 0.709),
+      rgba(87, 87, 87, 0.667)
+    ),
+    url("../images/city.jpg");
+}
+
+#about {
+  padding: 50px 0;
+  /* background-image: linear-gradient(
+      rgba(93, 93, 93, 0.709),
+      rgba(87, 87, 87, 0.667)
+    ),
+    url("../images/city.jpg"); */
+}
+
+.about-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#about h2 {
+  font-size: 2.3rem;
+}
+
+#about p {
+  font-size: 1.2rem;
+  color: #bababa;
+}
+
+#about .small {
+  font-size: 1.2rem;
+  color: #a09c9c;
+  font-weight: 600;
+}
+
+.about-img {
+  flex: 1 1 400px;
+  padding: 30px;
+  transform: translateX(150%);
+  animation: about-img-animation 1s ease-in-out forwards;
+}
+
+@keyframes about-img-animation {
+  100% {
+    transform: translate(0);
+  }
+}
+
+.about-text {
+  flex: 1 1 400px;
+  padding: 30px;
+  margin: auto;
+  transform: translate(-150%);
+  animation: about-text-animation 1s ease-in-out forwards;
+}
+
+@keyframes about-text-animation {
+  100% {
+    transform: translate(0);
+  }
+}
+
+.about-img img {
+  display: block;
+  width: 693px;
+  max-width: 100%;
+  margin: auto;
+  object-fit: cover;
+  object-position: right;
+}

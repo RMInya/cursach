@@ -1,0 +1,6 @@
+{
+  "port": 5000,
+  "jwtSecret": "cursach",
+  "mongoUri": "mongodb+srv://Rostyk:0jH571W2sExapHdb@cursach.fjjqlfx.mongodb.net/",
+  "baseUrl": "http://localhost:5000"
+}
