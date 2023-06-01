@@ -4,12 +4,13 @@ import { Navbar } from "./components/Navbar";
 import { BrowserRouter as Router } from "react-router-dom";
 
 function App() {
-  const routes = useRoutes();
+  let IsAuthenticated = true;
+  const routes = useRoutes(IsAuthenticated);
 
   return (
     <>
       <Router>
-        <Navbar />
+        {IsAuthenticated && <Navbar />}
         <div className="container">{routes}</div>
       </Router>
     </>
