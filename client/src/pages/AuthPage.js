@@ -18,13 +18,13 @@ export const AuthPage = () => {
 
   return (
     <div class="container">
-      {/* <input type="checkbox" id="check"></input>
+      <input type="checkbox" id="check"></input>
       <div class="login form">
         <header>Login</header>
         <form action="#">
           <input type="text" placeholder="Enter your email"></input>
           <input type="password" placeholder="Enter your password"></input>
-          <a href="#">Forgot password?</a>
+          {/* <a href="#">Forgot password?</a> */}
           <input
             type="button"
             class="button"
@@ -53,7 +53,7 @@ export const AuthPage = () => {
             <label for="check">Login</label>
           </span>
         </div>
-      </div> */}
+      </div>
     </div>
   );
 };
