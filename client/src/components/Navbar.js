@@ -1,8 +1,20 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import "./nav.css";
+import React, { useContext } from "react";
+import { NavLink, useHistory } from "react-router-dom";
+import { AuthContext } from "../context/Auth.context";
+import userphoto from "../images/exit.jpg";
+import logo from "../images/logo.jpg";
+import "../index.css";
 
 export const Navbar = () => {
+  const auth = useContext(AuthContext);
+  const history = useHistory();
+
+  const logoutHandler = (event) => {
+    event.preventDefault();
+    auth.logout();
+    history.push("/");
+  };
+
   return (
     <nav className="navMenu">
       <div className="App">
@@ -10,27 +22,29 @@ export const Navbar = () => {
           <div className="logo">
             <li>
               <NavLink to="/main">
-                <img src="./favicon.ico" class="brand"></img>
+                <img src={logo}></img>
               </NavLink>
             </li>
           </div>
           <div className="navlinks">
-            <li>
+            {/* <li>
               <NavLink to="/main">Main</NavLink>
-            </li>
-            <li>
-              <NavLink to="/">Auth</NavLink>
-            </li>
+            </li> */}
             <li>
               <NavLink to="/consult">Consult</NavLink>
             </li>
             <li>
               <NavLink to="/market">Buy</NavLink>
             </li>
-            <li>
+            {/* <li>
               <NavLink to="/profile">Profile</NavLink>
-            </li>
+            </li> */}
           </div>
+          <li className="exitlinks">
+            <a href="/" onClick={logoutHandler}>
+              <img src={userphoto}></img>
+            </a>
+          </li>
         </ul>
       </div>
     </nav>

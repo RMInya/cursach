@@ -26,19 +26,18 @@ router.post(
       //     .json({ errors: errors.array(), message: "Incorrect" });
       // }
 
-      const { email, password } = req.body;
+      const { name, email, password } = req.body;
       const candidate = await User.findOne({ email });
-      console.log(req.body);
+
       if (candidate) {
         return res.status(400).json({ message: "User already exists" });
       }
 
       const hashedPassword = await bcrypt.hash(password, 12);
 
-      const user = new User({ email, password: hashedPassword });
-      console.log(user);
+      const user = new User({ name, email, password: hashedPassword });
+
       await user.save();
-      console.log("test");
 
       return res.status(201).json({ message: "User created" });
     } catch (e) {

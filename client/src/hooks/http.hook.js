@@ -12,19 +12,18 @@ export const useHttp = () => {
           body = JSON.stringify(body);
           headers["Content-Type"] = "application/json";
         }
-        console.log(url);
 
         const response = await fetch("http://localhost:5000" + url, {
           method,
           body,
           headers,
         });
+
         const data = await response.json();
         console.log(data);
         if (!response.ok) {
           throw new Error(data.message || "Something went wrong");
         }
-        console.log("test1");
         setLoading(false);
 
         return data;
@@ -39,5 +38,5 @@ export const useHttp = () => {
 
   const clearError = () => setError(null);
 
-  return { loading, request, error, clearError };
+  return { loading, request };
 };

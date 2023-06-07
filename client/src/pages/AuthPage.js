@@ -1,56 +1,104 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHttp } from "../hooks/http.hook";
+import { AuthContext } from "../context/Auth.context";
+import "../index.css";
 
 export const AuthPage = () => {
-  const { loading, request, error, clearError } = useHttp();
-  const [form, setForm] = useState({ email: "", password: "" });
-  // const changeHandler = (event) => {
-  //   setForm({ ...form, [event.target.name]: event.target.value });
-  // };
+  const { loading, request } = useHttp();
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const auth = useContext(AuthContext);
+
+  const changeHandler = (event) => {
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
 
   const registerHandler = async (event) => {
     try {
       const data = await request("/api/auth/register", "POST", { ...form });
-      // message(data.message);
-      console.log("Data", data);
+    } catch (e) {}
+  };
+
+  const loginHandler = async (event) => {
+    try {
+      const data = await request("/api/auth/login", "POST", { ...form });
+      auth.login(data.token, data.userId);
     } catch (e) {}
   };
 
   return (
-    <div class="container">
+    <div class="Authcontainer">
       <input type="checkbox" id="check"></input>
       <div class="login form">
-        <header>Login</header>
+        <header>Register</header>
         <form action="#">
-          <input type="text" placeholder="Enter your email"></input>
-          <input type="password" placeholder="Enter your password"></input>
-          {/* <a href="#">Forgot password?</a> */}
+          <input
+            placeholder="Enter your name"
+            id="name"
+            type="text"
+            name="name"
+            value={form.name}
+            onChange={changeHandler}
+          ></input>
+          <input
+            placeholder="Enter email"
+            id="email"
+            type="text"
+            name="email"
+            value={form.email}
+            onChange={changeHandler}
+          ></input>
+          <input
+            placeholder="Enter password"
+            id="password"
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={changeHandler}
+          ></input>
           <input
             type="button"
             class="button"
-            value="Login"
+            value="Register"
             onClick={registerHandler}
           ></input>
         </form>
         <div class="signup">
           <span class="signup">
-            Don't have an account?
-            <label for="check">Signup</label>
+            Already have an account?
+            <label for="check"> Login</label>
           </span>
         </div>
       </div>
       <div class="registration form">
-        <header>Signup</header>
+        <header>Login</header>
         <form action="#">
-          <input type="text" placeholder="Enter your email"></input>
-          <input type="password" placeholder="Create a password"></input>
-          <input type="password" placeholder="Confirm your password"></input>
-          <input type="button" class="button" value="Signup"></input>
+          <input
+            placeholder="Enter email"
+            id="email"
+            type="text"
+            name="email"
+            value={form.email}
+            onChange={changeHandler}
+          ></input>
+          <input
+            placeholder="Enter password"
+            id="password"
+            type="password"
+            name="password"
+            value={form.password}
+            onChange={changeHandler}
+          ></input>
+          <input
+            type="button"
+            class="button"
+            value="Login"
+            onClick={loginHandler}
+          ></input>
         </form>
         <div class="signup">
           <span class="signup">
-            Already have an account?
-            <label for="check">Login</label>
+            Don't have an account?
+            <label for="check"> Sign up</label>
           </span>
         </div>
       </div>
