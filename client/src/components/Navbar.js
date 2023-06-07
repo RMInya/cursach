@@ -34,7 +34,7 @@ export const Navbar = () => {
               <NavLink to="/consult">Consult</NavLink>
             </li>
             <li>
-              <NavLink to="/market">Buy</NavLink>
+              <NavLink to="/market">Market</NavLink>
             </li>
             {/* <li>
               <NavLink to="/profile">Profile</NavLink>
